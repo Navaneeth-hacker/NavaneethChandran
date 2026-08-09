@@ -67,25 +67,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
   });
 });
 
-// ===== Hero parallax light/offset (feeds CSS vars used by .hero::after) =====
-const hero = document.getElementById('hero');
-if(hero && !isTouch && !prefersReducedMotion){
-  hero.addEventListener('mousemove', (e)=>{
-    const rect = hero.getBoundingClientRect();
-    const px = ((e.clientX - rect.left) / rect.width) * 100;
-    const py = ((e.clientY - rect.top) / rect.height) * 100;
-    hero.style.setProperty('--hero-light-x', px + '%');
-    hero.style.setProperty('--hero-light-y', py + '%');
-    hero.style.setProperty('--hero-offset-x', ((px-50)/50*8) + 'px');
-    hero.style.setProperty('--hero-offset-y', ((py-50)/50*8) + 'px');
-  });
-  hero.addEventListener('mouseleave', ()=>{
-    hero.style.setProperty('--hero-light-x', '50%');
-    hero.style.setProperty('--hero-light-y', '50%');
-    hero.style.setProperty('--hero-offset-x', '0px');
-    hero.style.setProperty('--hero-offset-y', '0px');
-  });
-}
 
 // ===== Magnetic buttons =====
 if(!isTouch && !prefersReducedMotion){
@@ -163,16 +144,6 @@ if(typeof gsap !== 'undefined'){
   }
 }
 
-// ===== Tech card mouse tilt effect =====
-document.querySelectorAll('.tech-card').forEach(card=>{
-  card.addEventListener('mousemove', (e)=>{
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--mouse-x', x + 'px');
-    card.style.setProperty('--mouse-y', y + 'px');
-  });
-});
 
 // ===== Active nav link on scroll =====
 const sections = document.querySelectorAll('section, header.hero');
